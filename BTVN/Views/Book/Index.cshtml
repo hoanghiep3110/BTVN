@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BTVN.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh Sách</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "CreateBook")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageCover)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Author)
+    </td>
+    <td>
+        <textarea>@item.Description</textarea>
+    </td>
+    <td>
+        <img src="~/Image/@item.ImageCover" width="50" height="50" alt="" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "EditBook", new { id = item.Id }) |
+        @Html.ActionLink("Xoá", "DeleteBook", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>
